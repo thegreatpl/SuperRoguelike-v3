@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(EntityAttributes))]
+[RequireComponent(typeof (EntityAbilities))]
 public class BaseController : MonoBehaviour, ITickable
 {
     public int Cooldown { get { return coolDown; } }
@@ -20,12 +21,15 @@ public class BaseController : MonoBehaviour, ITickable
 
     public EntityAttributes EntityAttributes; 
 
+    public EntityAbilities EntityAbilities;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EntityAttributes = GetComponent<EntityAttributes>();
+        EntityAbilities = GetComponent<EntityAbilities>();
         RegisterTickable();
     }
 
@@ -82,47 +86,57 @@ public class BaseController : MonoBehaviour, ITickable
         coolDown = (int)EntityAttributes.MovementSpeed;
     }
 
+
+
     public virtual void Attack(Direction direction)
     {
-        Attack(GameManager.instance.mapManager.GetTileFromWorld(transform.position).GetInDirection(direction)); 
+        switch (EntityAbilities.DefaultAbility.Type)
+        {
+            case AbilityType.MeleeAttack:
+                coolDown = EntityAbilities.UseMeleeAbility((MeleeAttackAbility)EntityAbilities.DefaultAbility, direction); 
+                break;
+            case AbilityType.RangedAttack:
+                break;
+        }
+        //Attack(GameManager.instance.mapManager.GetTileFromWorld(transform.position).GetInDirection(direction)); 
     }
 
-    public virtual void Attack(Vector3Int location)
-    {
-        var realLoc = GameManager.instance.mapManager.GetWorldFromTile(location);
-        var hits = Physics2D.OverlapPointAll(realLoc);
-        bool hashit = false; 
-        foreach ( var hit in hits )
-        {
-            var attribute = hit.attachedRigidbody?.gameObject?.GetComponent<EntityAttributes>();
-            if ( attribute != null && attribute.Faction != EntityAttributes.Faction)
-            {
-                hashit = true; 
-                var attackroll = DiceRoller.RollDice(Dice.d20);
-                if (attackroll == 1)
-                {
-                    GameManager.instance.ShowMessage($"{EntityAttributes.Name} attacks {attribute.Name} but misses", Color.green); 
-                    continue; //crit fail. 
-                }
+    //public virtual void Attack(Vector3Int location)
+    //{
+    //    var realLoc = GameManager.instance.mapManager.GetWorldFromTile(location);
+    //    var hits = Physics2D.OverlapPointAll(realLoc);
+    //    bool hashit = false; 
+    //    foreach ( var hit in hits )
+    //    {
+    //        var attribute = hit.attachedRigidbody?.gameObject?.GetComponent<EntityAttributes>();
+    //        if ( attribute != null && attribute.Faction != EntityAttributes.Faction)
+    //        {
+    //            hashit = true; 
+    //            var attackroll = DiceRoller.RollDice(Dice.d20);
+    //            if (attackroll == 1)
+    //            {
+    //                GameManager.instance.ShowMessage($"{EntityAttributes.Name} attacks {attribute.Name} but misses", Color.green); 
+    //                continue; //crit fail. 
+    //            }
 
-                if (attackroll >= attribute.ArmourClass)
-                {
-                    var damage = EntityAttributes.AttackDamage;
-                    attribute.DealDamage(EntityAttributes.DamageType, damage, EntityAttributes);
-                }
-                else
-                {
-                    GameManager.instance.ShowMessage($"{EntityAttributes.Name} attacks {attribute.Name} but misses", Color.green);
-                }
+    //            if (attackroll >= attribute.ToHit)
+    //            {
+    //                var damage = EntityAttributes.AttackDamage;
+    //                attribute.DealDamage(EntityAttributes.DamageType, damage, EntityAttributes);
+    //            }
+    //            else
+    //            {
+    //                GameManager.instance.ShowMessage($"{EntityAttributes.Name} attacks {attribute.Name} but misses", Color.green);
+    //            }
 
-            }
-        }
-        if (hashit)
-        {
-            coolDown = (int)EntityAttributes.AttackSpeed; //need to be a specific attack speed. 
-        }
+    //        }
+    //    }
+    //    if (hashit)
+    //    {
+    //        coolDown = (int)EntityAttributes.AttackSpeed; //need to be a specific attack speed. 
+    //    }
 
-    }
+    //}
 
     public void BeginTick()
     {

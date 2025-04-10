@@ -20,7 +20,7 @@ public class PlayerControiller : BaseController
     string mode;
 
 
-    public CollidableObject collider;
+    public CollidableObject colliderobj;
 
 
     bool ActionLock = false; 
@@ -29,7 +29,7 @@ public class PlayerControiller : BaseController
     void Start()
     {
         EntityAttributes = GetComponent<EntityAttributes>();
-        collider = GetComponent<CollidableObject>();
+        colliderobj = GetComponent<CollidableObject>();
         IsPlayerControlled = true;
         MoveAction = InputSystem.actions.FindAction("Move");
         MovementMode = InputSystem.actions.FindAction("MovementMode");
@@ -90,7 +90,7 @@ public class PlayerControiller : BaseController
         ActionLock = true; 
         if (mode == "movement")
         {     
-            if (!GameManager.instance.entityManager.IsEntityPresent(collider.CurrentLocation.GetInDirection(direction)))
+            if (!GameManager.instance.entityManager.IsEntityPresent(colliderobj.CurrentLocation.GetInDirection(direction)))
                 Move(direction);
             else
                 Attack(direction);

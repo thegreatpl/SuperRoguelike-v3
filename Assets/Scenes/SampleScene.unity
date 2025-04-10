@@ -155,7 +155,8 @@ MonoBehaviour:
   waitingForPlayerinput: 0
   IsPlayerControlled: 1
   EntityAttributes: {fileID: 0}
-  collider: {fileID: 0}
+  EntityAbilities: {fileID: 0}
+  colliderobj: {fileID: 0}
 --- !u!114 &237027156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,15 +182,9 @@ MonoBehaviour:
   Endurance: 10
   Intelligence: 10
   Charisma: 10
-  EquippedWeapon:
-    Name: 
-    Type: 
-    Description: 
-    DamageDice: 0
-    DamageModifier: 0
-    DamageType: 
-    AttackSpeed: 0
-    Weight: 0
+  ToHit: 0
+  MovementSpeed: 0
+  VisionDistance: 0
 --- !u!212 &237027157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -254,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 237027154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5099182, y: -0.52407134, z: 0}
+  m_LocalPosition: {x: 3.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -386,7 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MaxUpdated: 20
-  TimeBetweenTicks: 2.5
+  TimeBetweenTicks: 0.5
 --- !u!114 &361979939
 MonoBehaviour:
   m_ObjectHideFlags: 0

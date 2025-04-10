@@ -30,128 +30,41 @@ public class EntityAttributes : MonoBehaviour
     #region Stats
 
     public int Strength;
-
     public int StrengthBonus { get { return GetBonus(Strength); } }
 
     public int Agility;
-
     public int AgilityBonus { get { return GetBonus(Agility); } }
 
     public int Constitution;
-
     public int ConstitutionBonus { get { return GetBonus(Constitution); } }
 
     public int Endurance; 
-
     public int EnduranceBonus { get { return GetBonus(Endurance); } }
 
     public int Intelligence;
-
     public int IntelligenceBonus { get { return GetBonus(Intelligence); } }
 
-
     public int Charisma;
-
     public int CharismaBonus { get { return GetBonus(Charisma); } }
 
     #endregion
 
+    public int ToHit;
+
+    public float MovementSpeed;
+
+    public float VisionDistance;
 
 
 
 
-
-
-    public int ArmourClass
-    {
-        get
-        {
-            return 10; //todo: add in the armour check here. 
-        }
-    }
-
-    public float MovementSpeed
-    {
-        get
-        {
-            return 100 / Agility; 
-        }
-    }
-
-    public float VisionDistance
-    {
-        get {
-            return 10; 
-        }
-    }
-
-    public float AttackSpeed
-    {
-        get
-        {
-            if (EquippedWeapon != null)
-            {
-                return EquippedWeapon.AttackSpeed;
-            }
-            else
-            {
-                return 100 / Agility;
-            }
-        }
-    }
-
-    public string DamageType
-    {
-        get
-        {
-            if (EquippedWeapon != null)
-            {
-                return EquippedWeapon.DamageType;
-            }
-            else
-            {
-                return "bludgeoning"; //fists
-            }
-        }
-    }
-
-    public int AttackDamage
-    {
-        get
-        {
-            if (EquippedWeapon != null)
-            {
-                var damage = DiceRoller.RollDice(EquippedWeapon.DamageDice) + EquippedWeapon.DamageModifier + GetBonus(Strength);
-                if (damage < 1)
-                {
-                    damage = 1;
-                }
-
-                return damage;
-            }
-            else
-            {
-                var damage = DiceRoller.RollDice(2) + GetBonus(Strength); //fists
-                if (damage < 1)
-                {
-                    damage = 1;
-                }
-                return damage;
-            }
-        }
-    }
-
-
-
-    public Weapon EquippedWeapon; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MaxHealth = Constitution * Level;
+        RecalculatValues();
 
         Health = MaxHealth;
-        EquippedWeapon = null;
 
     }
 
@@ -182,6 +95,18 @@ public class EntityAttributes : MonoBehaviour
             Death();
             GameManager.instance.ShowMessage($"{attackerAttributes.Name} has killed {Name}!", Color.red);
         }
+    }
+
+
+    public void RecalculatValues()
+    {
+        MaxHealth = Constitution * Level;
+
+        ToHit = 10; 
+
+        MovementSpeed = 100/Agility;
+
+        VisionDistance = 10;
     }
 
 

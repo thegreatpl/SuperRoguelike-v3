@@ -13,23 +13,51 @@ public class EntityAttributes : MonoBehaviour
 
     public string Name;
 
-    public int Level = 1; 
+    public int Level = 1;
 
+    #region Variables
 
     public int Health; 
 
     public int MaxHealth;
 
+    public int Stamina; 
+
+    public int MaxStamina;
+
+    #endregion
+
+    #region Stats
 
     public int Strength;
 
-    public int Dexterity;
+    public int StrengthBonus { get { return GetBonus(Strength); } }
+
+    public int Agility;
+
+    public int AgilityBonus { get { return GetBonus(Agility); } }
 
     public int Constitution;
 
+    public int ConstitutionBonus { get { return GetBonus(Constitution); } }
+
+    public int Endurance; 
+
+    public int EnduranceBonus { get { return GetBonus(Endurance); } }
+
     public int Intelligence;
 
-    public int Wisdom; 
+    public int IntelligenceBonus { get { return GetBonus(Intelligence); } }
+
+
+    public int Charisma;
+
+    public int CharismaBonus { get { return GetBonus(Charisma); } }
+
+    #endregion
+
+
+
 
 
 
@@ -46,14 +74,14 @@ public class EntityAttributes : MonoBehaviour
     {
         get
         {
-            return 100 / Dexterity; 
+            return 100 / Agility; 
         }
     }
 
     public float VisionDistance
     {
         get {
-            return Wisdom; 
+            return 10; 
         }
     }
 
@@ -67,7 +95,7 @@ public class EntityAttributes : MonoBehaviour
             }
             else
             {
-                return 100 / Dexterity;
+                return 100 / Agility;
             }
         }
     }
@@ -157,7 +185,7 @@ public class EntityAttributes : MonoBehaviour
     }
 
 
-    public int GetBonus(int attribute)
+    public static int GetBonus(int attribute)
     {
         return (attribute - 10) / 2;  
     }

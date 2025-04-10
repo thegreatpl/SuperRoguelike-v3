@@ -73,14 +73,14 @@ public class PlayerControiller : BaseController
             else
             {
                 direction = Direction.None;
-                if (SkipTick.IsPressed())
-                    waitingForPlayerinput = false; 
+                //if (SkipTick.IsPressed())
+                //    waitingForPlayerinput = false; 
             }
 
-            if (MovementMode.IsPressed())
-                mode = "movement";
-            else if (AttackMode.IsPressed())
-                mode = "attack"; 
+            //if (MovementMode.IsPressed())
+            //    mode = "movement";
+            //else if (AttackMode.IsPressed())
+            //    mode = "attack"; 
             
         }
     }

@@ -123,4 +123,8 @@ public class BaseController : MonoBehaviour, ITickable
         }
 
     }
+
+    public void BeginTick()
+    {
+    }
 }

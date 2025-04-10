@@ -1,0 +1,42 @@
+{
+    "Walls": [
+        {
+            "Name": "stone",
+            "N": "stonewallvertical",
+            "E": "stonewallhorizontal",
+            "S": "stonewallvertical",
+            "W": "stonewallhorizontal",
+            "NE": "stonewalluprightcorner",
+            "NS": "stonewallvertical",
+            "NW": "stonewallupleftcorner",
+            "NES": "stonewallverticalright",
+            "NEW": "stonewallhorizontalup",
+            "NESW": "stonewallcross",
+            "NSW": "stonewallverticalleft",
+            "ES": "stonewalldownrightcorner",
+            "ESW": "stonewallhorizontaldown",
+            "EW": "stonewallhorizontal",
+            "SW": "stonewalldownleftcorner",
+            "Pillar": "stonepillar"
+        },
+        {
+            "Name": "",
+            "N": "wallvertical",
+            "E": "wallhorizontal",
+            "S": "wallvertical",
+            "W": "wallhorizontal",
+            "NE": "walluprightcorner",
+            "NS": "wallvertical",
+            "NW": "wallupleftcorner",
+            "NES": "wallverticalright",
+            "NEW": "wallhorizontalup",
+            "NESW": "wallcross",
+            "NSW": "wallverticalleft",
+            "ES": "walldownrightcorner",
+            "ESW": "wallhorizontaldown",
+            "EW": "wallhorizontal",
+            "SW": "walldownleftcorner",
+            "Pillar": "pillar"
+        }
+    ]
+}

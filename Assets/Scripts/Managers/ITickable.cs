@@ -15,6 +15,11 @@ public interface ITickable
     bool WaitingForPlayerInput { get; }
 
     /// <summary>
+    /// Called when this ITickable is about to begin a tick. 
+    /// </summary>
+    void BeginTick(); 
+
+    /// <summary>
     /// This runs the tick for this ITickable. 
     /// </summary>
     void RunTick();

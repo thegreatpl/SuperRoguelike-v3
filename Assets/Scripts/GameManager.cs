@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public SpriteManager spriteManager;
 
-    public UIController UIController;
+   // public UIController UIController;
 
     public ItemManager itemManager;
 
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         yield return null;
         yield return StartCoroutine(tileManager.CreateTiles());
         yield return null;
-        yield return StartCoroutine(mapManager.MapGenerator.GenetateFloor()); 
+        //yield return StartCoroutine(mapManager.MapGenerator.GenetateFloor()); 
         
 
         timeManager.StartTime(); 
@@ -80,6 +80,6 @@ public class GameManager : MonoBehaviour
 
     public void ShowMessage(string message, Color color)
     {
-       UIController?.MessageCenter?.ShowMessage(message, color);
+       //UIController?.MessageCenter?.ShowMessage(message, color);
     }
 }

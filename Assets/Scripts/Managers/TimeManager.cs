@@ -60,6 +60,8 @@ public class TimeManager : MonoBehaviour
                 if (t == null || t.Equals(null))
                     continue;
 
+                t?.BeginTick();
+
                 while (t?.WaitingForPlayerInput == true) //nullable value, so only if explicitely true. 
                     yield return null;
 

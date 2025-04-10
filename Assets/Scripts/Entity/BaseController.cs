@@ -42,6 +42,7 @@ public class BaseController : MonoBehaviour, ITickable
     protected void RegisterTickable()
     {
         EntityAttributes = GetComponent<EntityAttributes>();
+        EntityAbilities = GetComponent<EntityAbilities>();
         StartCoroutine(Register());
     }
 

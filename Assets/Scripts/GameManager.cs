@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(ItemManager))]
 [RequireComponent(typeof(EntityManager))]
 [RequireComponent(typeof(TileManager))]
+[RequireComponent(typeof(AbilityManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     public EntityManager entityManager;
 
     public TileManager tileManager;
+
+    public AbilityManager abilityManager;
 
     public MapManager mapManager;
 
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
         itemManager = GetComponent<ItemManager>();
         entityManager = GetComponent<EntityManager>();
         tileManager = GetComponent<TileManager>();
+        abilityManager = GetComponent<AbilityManager>();
         StartNewGame();
     }
 

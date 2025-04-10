@@ -16,6 +16,17 @@ public class EntityAbilities : MonoBehaviour
     void Start()
     {
         Attributes = GetComponent<EntityAttributes>();
+
+        DefaultAbility = new MeleeAttackAbility()
+        {
+            AttackDice = Dice.d2,
+            BaseCooldown = 10,
+            DamageModifier = 0,
+            DamageType = "bludgening",
+            Name = "Punch",
+            StaminaCost = 1,
+            ToHitModifier = 0
+        };
     }
 
     // Update is called once per frame

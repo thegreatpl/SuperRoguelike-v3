@@ -47,6 +47,9 @@ public class EntityAttributes : MonoBehaviour
     public int Charisma;
     public int CharismaBonus { get { return GetBonus(Charisma); } }
 
+
+    public EntityStats BaseStats;
+
     #endregion
 
     public int ToHit;
@@ -100,6 +103,14 @@ public class EntityAttributes : MonoBehaviour
 
     public void RecalculatValues()
     {
+        Strength = BaseStats.Strength;
+        Agility = BaseStats.Agility;
+        Endurance = BaseStats.Endurance;
+        Constitution = BaseStats.Constitution;
+        Intelligence = BaseStats.Intelligence;
+        Charisma = BaseStats.Charisma;
+
+
         MaxHealth = Constitution * Level;
 
         ToHit = 10; 
